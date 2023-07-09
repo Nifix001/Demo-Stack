@@ -3,25 +3,31 @@ const User = require('../schema/User');
 
 const  router = Router();
 
-router.use((req, res, next) =>{
-    if (req.session.user) next()
-    else res.send(401);
+
+router.post('/login', async(req, res) => {
+    const { email, password } = req.body
+
+    if(!email || !password) return res.sendStatus(400);
+    const userDB = await User.findOne({ email})
+    if (!userDB) return res.sendStatus(401);
+    if(password === userDB.password){
+        req.session.user = userDB;
+        return res.sendStatus(200);
+    } else {
+        res.sendStatus(401);
+    }
 })
 
-router.post('/login', (res, req) => {
-    const { email, password } = req.body;
 
-    if(email && password) {
-        if(req.session.user){
-            res.send(req.session.user)
-        } else {
-            req.session.user = {
-                email
-            }
-            res.send(req.session)
-        }
-    } else res.send(401);
+router.post('/register', async(req, res) =>{
+    const { id, first_name, last_name, email, gender, ip_address, password } = req.body
+    const userData = await User.findOne({ email })
+    if (userData){
+        res.sendStatus(400);
+    } else {
+        const newUser = await User.create({ id, first_name, last_name, email, ip_address, password })
+        res.sendStatus(200);
+    }
 })
-
 
 module.exports = router

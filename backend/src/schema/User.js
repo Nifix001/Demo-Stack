@@ -23,7 +23,11 @@ const UserSchema = new mongoose.Schema({
     ip_address: {
         type: mongoose.SchemaTypes.Number,
     },
+    password: {
+        type: mongoose.SchemaTypes.String,
+        required: true
+    },
 })
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema, 'users');
