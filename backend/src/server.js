@@ -1,6 +1,6 @@
 const express = require('express');
  
-require('./database')
+require('./database');
 
 const app = express();
 
