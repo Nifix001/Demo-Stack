@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+    id: {
+        type: mongoose.SchemaTypes.Number,
+    },
     first_name: {
         type: mongoose.SchemaTypes.String,
         required: true
@@ -19,7 +22,6 @@ const UserSchema = new mongoose.Schema({
     },
     ip_address: {
         type: mongoose.SchemaTypes.Number,
-        required: true
     },
 })
 
