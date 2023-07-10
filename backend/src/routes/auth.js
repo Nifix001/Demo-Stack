@@ -1,5 +1,7 @@
 const { Router } = require('express');
+const { isValidObjectId } = require('mongoose');
 const User = require('../schema/User');
+const { hashPassword, comparePassword } = require('../Utils/helpers');
 
 const  router = Router();
 
@@ -10,7 +12,8 @@ router.post('/login', async(req, res) => {
     if(!email || !password) return res.sendStatus(400);
     const userDB = await User.findOne({ email})
     if (!userDB) return res.sendStatus(401);
-    if(password === userDB.password){
+    const isValid = comparePassword(password, userDB.password);
+    if(password === userDB.password && isValid){
         req.session.user = userDB;
         return res.sendStatus(200);
     } else {
@@ -25,7 +28,9 @@ router.post('/register', async(req, res) =>{
     if (userData){
         res.status(400).send({ msg: 'Bobo You don register joor'});
     } else {
-        const newUser = await User.create({ id, first_name, last_name, email, gender, ip_address, password })
+        const hashedPassword = hashPassword(password);
+        const newUser = await User.create({ id, first_name, last_name, email, gender, ip_address, 
+        password: hashedPassword })
         res.status(200);
     }
 })
