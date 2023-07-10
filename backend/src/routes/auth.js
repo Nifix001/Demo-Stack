@@ -23,10 +23,10 @@ router.post('/register', async(req, res) =>{
     const { id, first_name, last_name, email, gender, ip_address, password } = req.body
     const userData = await User.findOne({ email })
     if (userData){
-        res.sendStatus(400);
+        res.status(400).send({ msg: 'Bobo You don register joor'});
     } else {
-        const newUser = await User.create({ id, first_name, last_name, email, ip_address, password })
-        res.sendStatus(200);
+        const newUser = await User.create({ id, first_name, last_name, email, gender, ip_address, password })
+        res.status(200);
     }
 })
 
