@@ -7,21 +7,25 @@ const  router = Router();
 
 
 
-router.post('/login', async(req, res) => {
-    const { email, password } = req.body
+// router.post('/login', async(req, res) => {
+//     const { email, password } = req.body
 
-    if(!email || !password) return res.sendStatus(400);
-    const userDB = await User.findOne({ email})
-    if (!userDB) return res.sendStatus(401);
-    const isValid = comparePassword(password, userDB.password);
-    if(isValid){
-        req.session.user = userDB;
-        return res.sendStatus(200);
-    } else {
-        res.sendStatus(401);
-    }
-})
+//     if(!email || !password) return res.sendStatus(400);
+//     const userDB = await User.findOne({ email})
+//     if (!userDB) return res.sendStatus(401);
+//     const isValid = comparePassword(password, userDB.password);
+//     if(isValid){
+//         req.session.user = userDB;
+//         return res.sendStatus(200);
+//     } else {
+//         res.sendStatus(401);
+//     }
+// })
 
+router.post('/login', passport.authenticate('local'), (req, res) => {
+    console.log('login successful');
+    res.sendStatus(200);
+} )
 
 
 
