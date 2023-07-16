@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const AuthRoute = require('./routes/auth');
 const passport  = require('passport');
 
-require("./Strategies")
+require("./Strategies/local")
 require('./database');
 
 const app = express();
