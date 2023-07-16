@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const AuthRoute = require('./routes/auth');
 const passport  = require('passport');
+const MongoStore = require('connect-mongo');
 
 require("./Strategies/local")
 require('./database');
@@ -20,7 +21,10 @@ app.use(cookieParser());
 app.use(session({
     secret: 'HSSJSWKKWSKAAUUWHDEFDGHJD',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store:MongoStore.create({
+        mongoUrl:'mongodb://127.0.0.1:27017/Practice'
+    }),
 }));
 
 app.use(passport.initialize());
