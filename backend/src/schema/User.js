@@ -21,7 +21,7 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     ip_address: {
-        type: mongoose.SchemaTypes.Number,
+        type: mongoose.SchemaTypes.String,
     },
     password: {
         type: mongoose.SchemaTypes.String,
