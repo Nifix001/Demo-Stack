@@ -2,12 +2,30 @@ body {
     margin: auto;
 }
 
+
 .login{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login label{
+    margin-top: 10px;
+}
+.register label{
+    margin-top: 10px;
 }
 
 fieldset{
     max-width: 50%;
     margin: auto;
+}
+button{
+    margin-top: 15px;
 }

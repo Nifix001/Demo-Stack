@@ -1,10 +1,10 @@
-import { Form } from "react-router-dom"
+import { Form, Link } from "react-router-dom"
 
 const Register = () => {
   return (
     <div>
       <fieldset>
-        <Form>
+        <Form className="register">
           <label>Id</label>
           <input type="number" required />
           <label>First Name</label>
@@ -22,7 +22,9 @@ const Register = () => {
           </select>
           <label>Password</label>
           <input type="password" required />
+          <button>Register</button>
         </Form>
+        <p>Registered already <Link to='/login' >Login</Link></p>
       </fieldset>     
     </div>
   )
