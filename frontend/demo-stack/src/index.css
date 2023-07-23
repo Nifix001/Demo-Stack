@@ -1,0 +1,13 @@
+body {
+    margin: auto;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset{
+    max-width: 50%;
+    margin: auto;
+}
