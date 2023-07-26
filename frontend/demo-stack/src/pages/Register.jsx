@@ -17,6 +17,7 @@ const Register = () => {
           <input type="text" required />
           <label>Gender</label>
           <select>
+            <option value="">Select gender</option>
             <option value="">Male</option>
             <option value="">Female</option>
           </select>
