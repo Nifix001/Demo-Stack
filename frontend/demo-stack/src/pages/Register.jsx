@@ -1,29 +1,56 @@
+import { useState } from "react"
 import { Form, Link } from "react-router-dom"
 
 const Register = () => {
+
+  const [userData, setUserData] = useState({
+    id:"",
+    first_name:"",
+    last_name:"",
+    email:"",
+    ip_address:"",
+    gender:"", 
+    password:"",
+  })
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try{
+      const body = { id, first_name, last_name, email, ip_address, gender, password }
+      const response = await fetch('http://localhost:4000/user/register', {
+        method: 'POST',
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(body)
+      });
+      console.log(response);
+    } catch(err){
+      console.log(err.message);
+    }
+  }
+  
   return (
     <React.Fragment>
       <fieldset>
-        <Form className="register">
-          <label>Id</label>
-          <input type="number" required />
-          <label>First Name</label>
-          <input type="text" required />
-          <label>Last Name</label>
-          <input type="text" required />
-          <label>Email</label>
-          <input type="email" required />
-          <label>IP Address</label>
-          <input type="text" required />
-          <label>Gender</label>
-          <select>
-            <option value="">Select gender</option>
+        <Form className="register" onSubmit={handleSubmit} method="post">
+          <label htmlFor="id">Id</label>
+          <input type="number" name="id" value={userData.id} required />
+          <label htmlFor="first_name">First Name</label>
+          <input type="text"placeholder="enter your first name" name="first_name" value={userData.first_name} required />
+          <label htmlFor="last_name">Last Name</label>
+          <input type="text" placeholder="enter your last name" name="last_name" value={userData.last_name} required />
+          <label htmlFor="email">Email</label>
+          <input type="email" placeholder="enter your email" name="email" value={userData.email} required />
+          <label htmlFor="ip_address">IP Address</label>
+          <input type="text" placeholder="enter your IP address" name="ip_address" value={userData.ip_address} required />
+          <label htmlFor="gender">Gender</label>
+          <select name="gender" value={userData.gender} required>
+            <option value="" disabled>Select your gender</option>
             <option value="">Male</option>
             <option value="">Female</option>
           </select>
-          <label>Password</label>
-          <input type="password" required />
-          <button>Register</button>
+          <label htmlFor="password">Password</label>
+          <input type="password" placeholder="enter your pasword" name="pasword" value={userData.password} required />
+          <button type="submit">Register</button>
         </Form>
         <p>Registered already <Link to='/login' >Login</Link></p>
       </fieldset>     

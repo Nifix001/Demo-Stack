@@ -11,12 +11,12 @@ const Login = () => {
   return (
     <React.Fragment>
       <fieldset>
-      <Form className="login" onSubmit={handleSubmit}>
+      <Form className="login" onSubmit={handleSubmit} method="post">
         <label htmlFor="email">Email</label>
         <input type="email" placeholder="Enter e-mail" name="email" value={user.email} required />
         <label htmlFor="password">Password</label>
         <input type="password" placeholder="enter your password" name="password" value={user.password} required />
-        <button>Login</button>
+        <button type="submit">Login</button>
       </Form>
       <p>Not registered yet? <Link to='/register'>Register here</Link></p>
       </fieldset>
