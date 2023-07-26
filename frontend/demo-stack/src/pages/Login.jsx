@@ -2,7 +2,7 @@ import { Form, Link } from "react-router-dom"
 
 const Login = () => {
   return (
-    <div>
+    <React.Fragment>
       <fieldset>
       <Form className="login">
         <label>Email</label>
@@ -13,7 +13,7 @@ const Login = () => {
       </Form>
       <p>Not registered yet? <Link to='/register'>Register here</Link></p>
       </fieldset>
-    </div>
+    </React.Fragment>
   )
 }
 
