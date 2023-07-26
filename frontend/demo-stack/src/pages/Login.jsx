@@ -10,7 +10,7 @@ const Login = () => {
 
   function handleChange(event) {
     const {name, value} = event.target
-    setUserData(prevData => ({
+    setUser(prevData => ({
       ...prevData,
       [name]: value 
     }))
